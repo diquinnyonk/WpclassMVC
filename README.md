@@ -16,18 +16,19 @@ thats it, its installed!
 (please note if last slash issue not resolved then amend .htaccess with code at bottom of this readme under known issues).
 
 So now you may want to define some routes, head on over to app/config/routes.php and here you set up the url routes you wish to have for your MVC app:
-
+<?php
 $routes = array(
 	//Requests to /users will go to the user_controller's 'index' action
 	'/users' 	=> 'users',
 	'/test' => 'test'
 );
+?>
 
 by default I have given you users and test to begin with but of course go with whatever you wish.
 Now all that happens is the route will look for that named controller if it is not their it will default to index_controller so you need to create your controller so that it can process the request.
 
 Now you may be wondering why only base routes, well wordpress url tags enable us to do all the route checking in the WpclassMVC class. So if you wish to create a url for test/test-page
-
+<?php
 you would go into test_controller and put the following:
 /**
 	 * index method. inherited from abstract parent
@@ -46,7 +47,7 @@ you would go into test_controller and put the following:
 		view::path('test/test-page.php',$data);
 		
 	}
-
+?>
 You have your function name that matches the path and you can pass $data through to the view which is the first path. All models are availble so you can have custom model work from there. Although wordpress is available so you may find you can do quite a lot of your data calls in your controller but try to keep with the skinny controllers, fat models concept if you can :)
 
 So test_page() view::path is asking for the test-page.php file to load so lets head on over to that view and view the source:
