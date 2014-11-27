@@ -8,9 +8,10 @@ This is an MVC framework I put together, it came about due to a project where th
 Install:
 pull this repo or download and unzip it to the root of your theme folder. The folder can be renamed to whatever you want but I called it App
 Include the bootstrap file in functions.php:
+<?php
 // mvc app ////////////////////
 include( 'app/bootstrap.php');
-
+?>
 thats it, its installed!
 
 (please note if last slash issue not resolved then amend .htaccess with code at bottom of this readme under known issues).
@@ -87,11 +88,12 @@ If this is popular I will of course take on request and improvements if you thin
 Known issues:
 going to a link within WpclassMVC without a forward slash on it just does ne work!
 Yes I will fix this but till then just put this in your root .htaccess before wordpress code:
+<?php
 <IfModule mod_rewrite.c>
  RewriteCond %{REQUEST_URI} /+[^\.]+$
  RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
 </IfModule>
-
+?>
 it ensures all requests have the last slash added
 
 
