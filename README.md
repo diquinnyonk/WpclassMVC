@@ -35,7 +35,8 @@ Now all that happens is the route will look for that named controller if it is n
 ##Controller
 Now you may be wondering why only base routes, well wordpress url tags enable us to do all the route checking in the WpclassMVC class. So if you wish to create a url for test/test-page
 ```php
-you would go into test_controller and put the following:
+
+// you would go into test_controller and put the following:
 /**
 	 * index method. inherited from abstract parent
 	 *
@@ -62,7 +63,7 @@ You have your function name that matches the path and you can pass $data through
 
 ##Views
 So test_page() view::path is asking for the test-page.php file to load so lets head on over to that view and view the source:
-```
+```html
 <?php 
 $data = view::$data;
 
@@ -96,7 +97,7 @@ If this is popular I will of course take on request and improvements if you thin
 
 
 
-Known issues:
+##Known issues:
 going to a link within WpclassMVC without a forward slash on it just does ne work!
 Yes I will fix this but till then just put this in your root .htaccess before wordpress code:
 ```apache
@@ -110,3 +111,8 @@ it ensures all requests have the last slash added
 
 Passing more than one parameter:
 I have a version where you can pass two parameters through but it's not the neatest solution so this is going to require further digging to create solution.
+
+
+> All great things have a small beginning
+
+That dude from prometheus
