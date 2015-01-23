@@ -36,15 +36,15 @@ Now all that happens is the route will look for that named controller if it is n
 Now you may be wondering why only base routes, well wordpress url tags enable us to do all the route checking in the WpclassMVC class. So if you wish to create a url for test/test-page
 ```php
 
-// you would go into test_controller and put the following:
-/**
+	// you would go into test_controller and put the following:
+	/**
 	 * index method. inherited from abstract parent
 	 *
 	 * @access public
 	 */
 	function test_page(){
 		
-  // models are available to code here ///
+  		// models are available to code here ///
 
 		$data = [
 			'one' => 'test_controller',
@@ -56,24 +56,63 @@ Now you may be wondering why only base routes, well wordpress url tags enable us
 	}
 ```
 
+Looking above you may notice we have the call 
+```php
+view::path('test/test-page.php',$data);
+```
+The first parameter decides what template to load, by default it will look in the views folder and its up to you how you wish to structure it but I go by the structure defined by name e.g. test has a test folder and user has a user folder. The second parameter is the $data array which gets passed into the view defined in path one.
+
 ##Models
 
-You have your function name that matches the path and you can pass $data through to the view which is the first path. All models are availble so you can have custom model work from there. Although wordpress is available so you may find you can do quite a lot of your data calls in your controller but try to keep with the skinny controllers, fat models concept if you can :)
+In your controllers you have your function name that matches the path of the url and you can pass $data through to the view which is the first path. 
+The models folder contains a set of default models and every file in this folder is pre-loaded so is availble in every controller for you. 
+```php
+
+	// you would go into test_controller and put the following:
+	/**
+	 * index method. inherited from abstract parent
+	 *
+	 * @access public
+	 */
+	function test_page(){
+		
+  		// models are available to code here ///
+		$model = new model();
+		$user  = new user('Username','Name');
+	
+		$data = [
+			'one'   => 'test_controller',
+			'two'   => 'two',
+			'model' => $model,
+			'user'  => $user
+		];
+		
+		view::path('test/test-page.php',$data);
+		
+	}
+```
+
+All models are availble so you can have custom model work from there. 
+Although wordpress is available so you may find you can do quite a lot of your data calls in your controller but try to keep with the skinny controllers, fat models concept if you can :)
 
 
 ##Views
+Well now we want to go into our view and start the templating. As the library utilises the 'template_include' hook of wordpress, you have a full wordpress template loaded. Based on the last controller example lets go into an example view.
 So test_page() view::path is asking for the test-page.php file to load so lets head on over to that view and view the source:
 ```html
 <?php 
 $data = view::$data;
+$user = $data['user'];
 
 get_header(); ?>
 
 	<h1><?php echo 'WE ARE in test/test-page.php of APP BASE'; ?></h1>
 	
 	<section id="content" role="main">
+	
 	<?php 
-
+		echo $user->username;	
+	
 		echo '<h1>ready?</h1>';
 		echo '<pre>';
 		echo '<p>Whats in the data:</p>';
@@ -90,16 +129,16 @@ get_header(); ?>
 <?php get_footer(); ?>
 ```
 
-As you can see it's default wordpress theme file and you can do what you like, to access your data just use the view::$data call.
+As you can see it's default wordpress theme file and you can do what you like, to access your data just use the view::$data method call.
 And there you go you are free to do what you want, anytime or place.
 
-If this is popular I will of course take on request and improvements if you think you see a way to do anything better.
+If this is popular I will of course take on request and improvements if you think you see a way to do anything better as this iteration/version was made from necessity and time was not my friend when building.
 
 
 
 ##Known issues:
 going to a link within WpclassMVC without a forward slash on it just does ne work!
-Yes I will fix this but till then just put this in your root .htaccess before wordpress code:
+Yes I will fix this but till then just put this in your root .htaccess before wordpress code (at top of .htaccess file):
 ```apache
 <IfModule mod_rewrite.c>
  RewriteCond %{REQUEST_URI} /+[^\.]+$
@@ -108,9 +147,11 @@ Yes I will fix this but till then just put this in your root .htaccess before wo
 ```
 it ensures all requests have the last slash added
 
+Error logging:
+I have plonked a load of error loggin that gets written to the error log. I wish to add in exceptions instead so that will be in next version. But for now you do get in WpclassMVC a static private parameter called $debug that you can set to true to debug the class.
 
 Passing more than one parameter:
-I have a version where you can pass two parameters through but it's not the neatest solution so this is going to require further digging to create solution.
+I have a version where you can pass two parameters through but it's not the neatest solution so this is going to require further digging to create solution, although it may be the version that goes onto here :)
 
 
 > All great things have a small beginning
