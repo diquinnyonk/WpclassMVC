@@ -15,7 +15,11 @@ Include the bootstrap file in functions.php:
 // mvc app ////////////////////
 include( 'app/bootstrap.php');
 ```
+
+Next go to permalinks in your admin and ensure any checkbox is ticked other than default. In other words dont have the top one (http://wordpress-site/?p=123) checked.
+
 thats it, its installed!
+
 
 (please note if last slash issue not resolved then amend .htaccess with code at bottom of this readme under known issues).
 
@@ -61,6 +65,7 @@ Looking above you may notice we have the call
 view::path('test/test-page.php',$data);
 ```
 The first parameter decides what template to load, by default it will look in the views folder and its up to you how you wish to structure it but I go by the structure defined by name e.g. test has a test folder and user has a user folder. The second parameter is the $data array which gets passed into the view defined in path one.
+
 
 ##Models
 
