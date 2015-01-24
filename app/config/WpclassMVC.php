@@ -163,16 +163,18 @@ class WpclassMVC extends BaseClass {
             $args = array( 'version' => $ver, 'time' => time() );
             if ( ! update_option( __CLASS__ . '_flush', $args ) )
             add_option( __CLASS__ . '_flush', $args );
-        }
-        if(!isset( $rules['^' . $route_components[1] . ''] )){
-          global $wp_rewrite;
-          $wp_rewrite->flush_rules();
-          flush_rewrite_rules();
 
-          //echo 'wp_rewrite->non_wp_rules: <br/>';
-          //print_r($wp_rewrite->non_wp_rules);
-          self::log("ClassMVC - - flush_rewrite_rules() called");
+            self::log("ClassMVC - - flush_rewrite_rules() called");
         }
+        // if(!isset( $rules['^' . $route_components[1] . ''] )){
+        //   global $wp_rewrite;
+        //   $wp_rewrite->flush_rules();
+        //   flush_rewrite_rules();
+        //
+        //   //echo 'wp_rewrite->non_wp_rules: <br/>';
+        //   //print_r($wp_rewrite->non_wp_rules);
+        //   self::log("ClassMVC - - flush_rewrite_rules() called");
+        // }
     }
 
 
