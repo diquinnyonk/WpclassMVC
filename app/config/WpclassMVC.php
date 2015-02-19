@@ -124,6 +124,8 @@ class WpclassMVC extends BaseClass {
     public function mvc_rewrites()
     {
 
+        // get rule options ////////////////
+        $rules = get_option('rewrite_rules');
 
         $the_routes = self::$routes;
 
@@ -138,12 +140,21 @@ class WpclassMVC extends BaseClass {
 
             if(!isset( $rules['^' . $route_components[1] . ''] ) ){
 
+                // add to top of rule options //////////////
+                $rules = array( $route_components[1] . ''                                 => 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]') + $rules;
+                $rules = array( $route_components[1] . '/([^/]*)'                         => 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]') + $rules;
+                $rules = array( $route_components[1] . '/([^/]*)/([^/]*)'                 => 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]') + $rules;
+                $rules = array( $route_components[1] . '/([^/]*)/([^/]*)/([^/]*)'         => 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]&extra=$matches[3]') + $rules;
+                $rules = array( $route_components[1] . '/([^/]*)/([^/]*)/([^/]*)/([^/]*)' => 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]&extra=$matches[3]&extra_id=$matches[4]') + $rules;
+
                 add_rewrite_rule( '^' . $route_components[1] . '/([^/]*)/([^/]*)/([^/]*)/([^/]*)', 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]&extra=$matches[3]&extra_id=$matches[4]', 'top' );
                 add_rewrite_rule( '^' . $route_components[1] . '/([^/]*)/([^/]*)/([^/]*)', 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]&extra=$matches[3]', 'top' );
                 add_rewrite_rule( '^' . $route_components[1] . '/([^/]*)/([^/]*)', 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]', 'top' );
                 add_rewrite_rule( '^' . $route_components[1] . '/([^/]*)', 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]', 'top' );
                 add_rewrite_rule( '^' . $route_components[1] . '', 'index.php?mvc_controller=' . $controller_action_array[0] . '&mvc_action=$matches[1]&individual_id=$matches[2]', 'top' );
 
+                // update rewrite_rules ////////////////
+                update_option( 'rewrite_rules', $rules );
             }
 
 
