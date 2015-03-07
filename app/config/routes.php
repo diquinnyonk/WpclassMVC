@@ -9,6 +9,8 @@
 //
 //
 
+namespace diquinnyonk\WpclassMVC\Config;
+
 $routes = array(
 
 	//Requests to /users will go to the users_controller's 'index' action

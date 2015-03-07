@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
+$data = View::$data;
+
+get_header(); ?>
 
 <h1><?php echo 'WE ARE in index of APP BASE'; ?></h1>
 <section id="content" role="main">

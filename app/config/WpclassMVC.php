@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Class to init our mvc
  *
@@ -9,6 +7,8 @@
  * @since 1.0.0
  * @access public
  */
+
+ namespace diquinnyonk\WpclassMVC\Config;
 
 class WpclassMVC extends BaseClass {
 
@@ -327,6 +327,7 @@ class WpclassMVC extends BaseClass {
     public function get_controller_name(){
 
         $controller_name = strtolower( get_query_var( 'mvc_controller' ) ) . '_controller';
+        $controller_name = ucfirst($controller_name);
 
         return $controller_name;
     }
@@ -342,40 +343,40 @@ class WpclassMVC extends BaseClass {
      *
      * @return $controller obj - instantiated controller
      */
-    public function class_exists($controller_name){
+     public function class_exists($controller_name){
 
-        self::log("WpclassMVC - - controller name we are looking for: {$controller_name}");
+         self::log("WpclassMVC - - controller name we are looking for: {$controller_name}");
 
-        if(!file_exists(SITE_PATH . 'controllers/' . $controller_name . '.php')){
+         if(!file_exists(SITE_PATH . 'Controllers/' . $controller_name . '.php')){
 
-            self::log("WpclassMVC - - index controller called as file does not exist!");
+           self::log("WpclassMVC - - index controller called as file does not exist!");
 
-            include_once(SITE_PATH . 'controllers/index_controller.php');
+           include_once(SITE_PATH . 'Controllers/Index_Controller.php');
 
-            $controller = new index_controller();
+           $controller = new \diquinnyonk\WpclassMVC\Controllers\Index_Controller();
 
-            return $controller;
-        }
+           return $controller;
+         }
 
-        // load the controller file if this far //////////////////////////////////////
-        include_once(SITE_PATH . 'controllers/' . $controller_name . '.php');
+         // load the controller file if this far //////////////////////////////////////
+         include_once(SITE_PATH . 'Controllers/' . $controller_name . '.php');
 
-        // then check if that class does indeed exist ///////////////////////////////
-        if(class_exists($controller_name)) {
+         // then check if that class does indeed exist ///////////////////////////////
+         if(class_exists($controller_name)) {
 
-            $controller = new $controller_name();
+           $controller = new $controller_name();
 
-        }else{
+         }else{
 
-            self::log("WpclassMVC - - index controller called as class_exists() returned false");
+           self::log("WpclassMVC - - index controller called as class_exists() returned false");
 
-            include_once(SITE_PATH . 'controllers/index_controller.php');
+           include_once(SITE_PATH . 'Controllers/Index_Controller.php');
 
-            $controller = new index_controller(); // default controller if doesnt exist
-        }
+           $controller = new \diquinnyonk\WpclassMVC\Controllers\Index_Controller(); // default controller if doesnt exist
+         }
 
-        return $controller;
-    }
+         return $controller;
+     }
 
 
     /**

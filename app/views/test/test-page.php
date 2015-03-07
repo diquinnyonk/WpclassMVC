@@ -1,12 +1,14 @@
-<?php 
-$data = view::$data;
+<?php
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
+$data = View::$data;
 
 get_header(); ?>
 
 	<h1><?php echo 'WE ARE in test/test-page.php of APP BASE'; ?></h1>
-	
+
 	<section id="content" role="main">
-	<?php 
+	<?php
 
 		echo '<h1>ready?</h1>';
 		echo '<pre>';

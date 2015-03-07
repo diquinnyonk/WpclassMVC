@@ -1,5 +1,7 @@
 <?php
-$data = view::$data;
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
+$data = View::$data;
 
 get_header(); ?>
 

@@ -7,6 +7,9 @@
 * @since 1.0.0
 * @access private
 */
+
+namespace diquinnyonk\WpclassMVC\Config;
+
 abstract class BaseClass {
 
   private static $instance = array();

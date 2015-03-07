@@ -7,7 +7,10 @@
  * @since 1.0.0
  * @access private
  */
-abstract class controller {
+
+namespace diquinnyonk\WpclassMVC\Controllers;
+
+abstract class Controller {
 
 	/**
      * parameters array.

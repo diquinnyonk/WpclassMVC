@@ -9,7 +9,9 @@
  * @access public
  */
 
-class view {
+namespace diquinnyonk\WpclassMVC\Helpers;
+
+class View {
 
    /**
     * data array.
@@ -18,7 +20,7 @@ class view {
     * @since 1.0.0
     * @access public
     */
-	public static $data = array(); 
+	public static $data = array();
 
    /**
     * template path
@@ -62,7 +64,7 @@ class view {
 	static function render(){
 		add_filter( 'template_include', array( __CLASS__ ,'template_path') );
 	}
-	
+
 	/**
      * path to template file
      *
@@ -83,4 +85,3 @@ class view {
 
 
 }
-

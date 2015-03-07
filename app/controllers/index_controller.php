@@ -1,5 +1,4 @@
 <?php
-
 /**
  * extended class from controller
  *
@@ -8,8 +7,13 @@
  * @since 1.0.0
  * @access public
  */
-class index_controller extends controller {
-	
+
+namespace diquinnyonk\WpclassMVC\Controllers;
+
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
+class Index_Controller extends Controller {
+
 	/**
      * Constructor.
      *
@@ -25,12 +29,12 @@ class index_controller extends controller {
 	 * @access public
 	 */
 	function index(){
-		
+
 		$data = [
 			'one' => 'index_controller',
 			'two' => 'two'
 		];
-		
+
 		view::path('index/index.php',$data);
 	}
 

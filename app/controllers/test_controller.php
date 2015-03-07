@@ -7,6 +7,11 @@
  * @since 1.0.0
  * @access public
  */
+
+namespace diquinnyonk\WpclassMVC\Controllers;
+
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
 class test_controller extends controller {
 
 	/**

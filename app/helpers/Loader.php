@@ -1,16 +1,18 @@
 <?php
-
 /**
- * Base class for loading
+ * Class for loading
  *
  * @package App
  * @subpackage loader
  * @since 1.0.0
  * @access public
  */
-class loader {
 
-    
+namespace diquinnyonk\WpclassMVC\Helpers\Loader;
+
+class Loader {
+
+
     /**
      * load method. loads in models and initial controller
      *
@@ -40,7 +42,7 @@ class loader {
 
 
     /**
-     * get files in directory 
+     * get files in directory
      *
      * @param $directory string - a directory path
      *
@@ -75,10 +77,4 @@ class loader {
 
 }
 
-loader::load();
-
-
-
-
-
-
+Loader::load();

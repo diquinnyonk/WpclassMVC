@@ -1,6 +1,16 @@
 <?php
+/**
+* User model
+*
+* @package App
+* @subpackage model
+* @since 1.0.0
+* @access private
+*/
 
-class user extends model {
+namespace diquinnyonk\WpclassMVC\Models;
+
+class User extends Model {
 
 	public $username = "";
 	public $name = "";

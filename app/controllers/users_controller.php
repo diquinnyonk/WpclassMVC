@@ -9,6 +9,10 @@
  * @access public
  */
 
+namespace diquinnyonk\WpclassMVC\Controllers;
+
+Use \diquinnyonk\WpclassMVC\Helpers\View AS View;
+
 class users_controller extends controller {
 
 	/**

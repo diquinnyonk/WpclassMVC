@@ -1,6 +1,15 @@
 <?php
+/**
+* Partner model
+*
+* @package App
+* @subpackage model
+* @since 1.0.0
+* @access private
+*/
+namespace diquinnyonk\WpclassMVC\Models;
 
-class partner extends model {
+class Partner extends Model {
 
 	public $id = "";
 	public $name = "";
@@ -13,7 +22,7 @@ class partner extends model {
 			$this->is_valid = true;
 		}
 	}
-	
+
 	function delete() {
 	}
 
